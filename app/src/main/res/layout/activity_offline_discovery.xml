@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="16dp">
+
+        <Button
+            android:id="@+id/discoveryBackButton"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:text="@string/back"
+            android:textAllCaps="false" />
+
+        <TextView
+            android:id="@+id/discoveryTitleText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/text_primary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ai.nextbillion.maps.core.MapView
+        android:id="@+id/discoveryMapView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.7" />
+
+    <TextView
+        android:id="@+id/discoveryStatusText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/surface_subtle"
+        android:maxLines="3"
+        android:minHeight="44dp"
+        android:padding="10dp"
+        android:textColor="@color/text_secondary"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="12dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/discoveryOriginLatInput"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:hint="@string/origin_lat"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal|numberSigned"
+                android:maxLines="1"
+                android:text="@string/default_origin_lat" />
+
+            <EditText
+                android:id="@+id/discoveryOriginLonInput"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:hint="@string/origin_lon"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal|numberSigned"
+                android:maxLines="1"
+                android:text="@string/default_origin_lon" />
+
+            <EditText
+                android:id="@+id/discoveryRadiusInput"
+                android:layout_width="86dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="6dp"
+                android:hint="@string/radius_km"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                android:text="@string/default_radius_km" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/discoveryDestinationRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/discoveryDestinationLatInput"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:hint="@string/destination_lat"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal|numberSigned"
+                android:maxLines="1"
+                android:text="@string/default_destination_lat" />
+
+            <EditText
+                android:id="@+id/discoveryDestinationLonInput"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:hint="@string/destination_lon"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal|numberSigned"
+                android:maxLines="1"
+                android:text="@string/default_destination_lon" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/runDiscoveryButton"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_marginTop="4dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/selectAllDiscoveryButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="@string/select_all"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/downloadSelectedDiscoveryButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:text="@string/download_selected"
+                android:textAllCaps="false" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/discoveryRegionList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingBottom="10dp"
+        tools:listitem="@layout/item_discovery_region" />
+</LinearLayout>

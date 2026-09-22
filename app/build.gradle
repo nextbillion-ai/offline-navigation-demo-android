@@ -1,0 +1,135 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.google.cloud.artifactregistry.gradle-plugin'
+}
+
+import java.util.Properties
+
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withInputStream { localProperties.load(it) }
+}
+def accessKey = (findProperty('nextbillionAccessKey')
+        ?: localProperties.getProperty('NEXTBILLION_ACCESS_KEY')
+        ?: '').toString().trim()
+def escapedAccessKey = accessKey.replace('\\', '\\\\').replace('"', '\\"')
+def selectedSdkVersion = (findProperty('navigationSdkVersion')
+        ?: '3.0.0').toString()
+// Signing secrets are resolved from -P properties, local.properties, or environment variables.
+// Keeping them out of this tracked script prevents an open-source checkout from exposing the
+// private key password. RELEASE_STORE_FILE is resolved relative to the repository root.
+def releaseSigningValue = { String name ->
+    (findProperty(name)
+            ?: localProperties.getProperty(name)
+            ?: System.getenv(name)
+            ?: '').toString()
+}
+def releaseStoreFilePath = releaseSigningValue('RELEASE_STORE_FILE')
+def releaseStorePassword = releaseSigningValue('RELEASE_STORE_PASSWORD')
+def releaseKeyAlias = releaseSigningValue('RELEASE_KEY_ALIAS')
+def releaseKeyPassword = releaseSigningValue('RELEASE_KEY_PASSWORD')
+def hasReleaseSigningConfig = [
+        releaseStoreFilePath,
+        releaseStorePassword,
+        releaseKeyAlias,
+        releaseKeyPassword,
+].every { !it.isBlank() }
+
+android {
+    namespace 'ai.nextbillion.offlinedemo'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId 'ai.nextbillion.offlinedemo'
+        minSdk 23
+        targetSdk 36
+        versionCode 1
+        versionName '1.1'
+        buildConfigField 'String', 'NB_ACCESS_KEY', "\"${escapedAccessKey}\""
+        ndk { abiFilters 'arm64-v8a', 'x86_64' }
+    }
+
+    buildFeatures {
+        buildConfig true
+        viewBinding true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions { jvmTarget = '17' }
+
+    signingConfigs {
+        if (hasReleaseSigningConfig) {
+            release {
+                storeFile rootProject.file(releaseStoreFilePath)
+                storePassword releaseStorePassword
+                keyAlias releaseKeyAlias
+                keyPassword releaseKeyPassword
+            }
+        }
+    }
+
+    buildTypes {
+        debug { minifyEnabled false }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            if (hasReleaseSigningConfig) signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        r8Smoke {
+            initWith release
+            debuggable false
+            // Local/customer builds exercise the real release signer. A clean CI checkout can
+            // still run the R8 smoke test with the standard debug signer and no private keystore.
+            signingConfig hasReleaseSigningConfig ? signingConfigs.release : signingConfigs.debug
+            applicationIdSuffix '.r8smoke'
+            matchingFallbacks = ['release']
+        }
+    }
+    packaging {
+        resources {
+            excludes += ['META-INF/DEPENDENCIES']
+        }
+    }
+    lint {
+        // Version-update checks are disabled to keep this customer sample reproducible.
+        disable 'AndroidGradlePluginVersion', 'GradleDependency'
+    }
+}
+
+// Never let an explicit production release command quietly emit an unsigned artifact.
+def verifyReleaseSigning = tasks.register('verifyReleaseSigning') {
+    doLast {
+        if (!hasReleaseSigningConfig) {
+            throw new GradleException(
+                    'Release signing is incomplete. Configure RELEASE_STORE_FILE, ' +
+                            'RELEASE_STORE_PASSWORD, RELEASE_KEY_ALIAS, and RELEASE_KEY_PASSWORD.'
+            )
+        }
+        if (!rootProject.file(releaseStoreFilePath).isFile()) {
+            throw new GradleException(
+                    "Release keystore does not exist: ${rootProject.file(releaseStoreFilePath)}"
+            )
+        }
+    }
+}
+
+tasks.configureEach { task ->
+    if (task.name in ['assembleRelease', 'bundleRelease', 'packageRelease']) {
+        task.dependsOn(verifyReleaseSigning)
+    }
+}
+
+dependencies {
+    implementation "ai.nextbillion:nb-navigation-android:${selectedSdkVersion}"
+    implementation 'androidx.core:core-ktx:1.15.0'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'androidx.recyclerview:recyclerview:1.4.0'
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'com.jakewharton.timber:timber:5.0.1'
+    testImplementation 'junit:junit:4.13.2'
+}

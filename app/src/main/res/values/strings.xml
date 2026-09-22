@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NB Offline Navigation Demo</string>
+    <string name="home_title">Offline route planner</string>
+    <string name="region_downloads">Region downloads</string>
+    <string name="region_downloads_title">Offline region downloads</string>
+    <string name="back">Back</string>
+    <string name="setup_full_message">Configuration required\n\nAdd NEXTBILLION_ACCESS_KEY to local.properties, then rebuild the app. See README.md.</string>
+    <string name="default_origin_lat" translatable="false">37.7749</string>
+    <string name="default_origin_lon" translatable="false">-122.4194</string>
+    <string name="default_destination_lat" translatable="false">37.7849</string>
+    <string name="default_destination_lon" translatable="false">-122.4094</string>
+    <string name="default_radius_km" translatable="false">25</string>
+    <string name="auto_sync">AUTO sync</string>
+    <string name="refresh">Refresh</string>
+    <string name="read_cache">Read cache</string>
+    <string name="selected_region">Select a region to inspect its route/map package metadata.</string>
+    <string name="download">Download</string>
+    <string name="pause">Pause</string>
+    <string name="resume">Resume</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="show_boundary">Boundary / focus</string>
+    <string name="origin_lat">Origin lat</string>
+    <string name="origin_lon">Origin lon</string>
+    <string name="destination_lat">Destination lat</string>
+    <string name="destination_lon">Destination lon</string>
+    <string name="route_mode">Route mode</string>
+    <string name="route_mode_auto">Auto</string>
+    <string name="route_mode_online">Online</string>
+    <string name="route_mode_offline">Offline</string>
+    <string name="calculate_route">Calculate &amp; draw route</string>
+    <string name="start_navigation">Start navigation</string>
+    <string name="route_request_title">Route request</string>
+    <string name="route_result_hint">The route source, distance, and ETA will appear here.</string>
+    <string name="search_regions">Search regions</string>
+    <string name="no_regions">No matching offline regions.</string>
+    <string name="network_wifi_only">Wi-Fi only</string>
+    <string name="network_any">Any network</string>
+    <string name="country_united_states">United States</string>
+    <string name="country_india">India</string>
+    <string name="country_us_short">US</string>
+    <string name="country_india_short">India</string>
+    <string name="unavailable">Unavailable</string>
+    <string name="retry">Retry</string>
+    <string name="view_details">View</string>
+    <string name="offline_initializing">Initializing offline navigation…</string>
+    <string name="offline_ready">Offline navigation ready in %1$d ms.</string>
+    <string name="offline_not_ready">Offline navigation is not ready yet. Initialization has been requested.</string>
+    <string name="offline_initialization_failed">Offline initialization failed</string>
+    <string name="catalog_reading_cache">Offline navigation ready. Reading the cached catalogs…</string>
+    <string name="invalid_coordinates">Enter valid latitude and longitude values.</string>
+    <string name="route_calculating">Calculating route…</string>
+    <string name="route_missing_geometry">No drawable route geometry was returned.</string>
+    <string name="route_render_failed">Route geometry render failed</string>
+    <string name="route_ready">Route returned from %1$s and rendered on the map.</string>
+    <string name="route_failed">Route request failed</string>
+    <string name="calculate_route_before_navigation">Calculate a route before starting navigation.</string>
+    <string name="precise_location_required">Precise location permission is required to start navigation.</string>
+    <string name="navigation_launch_failed">Navigation could not be started</string>
+    <string name="mobile_data_title">Allow a mobile-data download?</string>
+    <string name="mobile_data_message">The remaining download is approximately %1$s. The ANY policy can use metered mobile data.</string>
+    <string name="insufficient_storage_title">Not enough storage</string>
+    <string name="insufficient_storage_message">This download needs approximately %1$s including the safety reserve, but only %2$s is available.</string>
+    <string name="unknown_download_size_title">Download size unavailable</string>
+    <string name="unknown_download_size_message">One or more package sizes are unavailable, so free storage cannot be verified. Continue only after checking device storage.</string>
+    <string name="continue_action">Continue</string>
+    <string name="unknown_value">unknown</string>
+    <string name="delete_region_title">Delete offline region?</string>
+    <string name="delete_region_message">Route-network and map-tile data for region %1$s will be removed.</string>
+    <string name="region_name_format">%1$s  (#%2$d)</string>
+    <string name="tab_regions">Regions</string>
+    <string name="tab_route">Route</string>
+    <string name="tab_diagnostics">Diagnostics</string>
+    <string name="simulate_navigation">Simulate navigation</string>
+    <string name="diagnostics_title">Offline diagnostics</string>
+    <string name="diagnostics_waiting">Initialize the offline engine to inspect its health.</string>
+    <string name="diagnostics_refresh">Initialize and check health</string>
+    <string name="diagnostics_versions">SDK facade: %1$s\nEngine facade: %2$s\n\nChecking local engine health…</string>
+    <string name="diagnostics_checking_health">Offline engine initialized. Checking health…</string>
+    <string name="diagnostics_empty_health">Health check returned no result.</string>
+    <string name="diagnostics_health_complete">Health check completed in %1$d ms.</string>
+    <string name="diagnostics_initialization_failed">Initialization failed</string>
+    <string name="diagnostics_health_failed">Health check failed</string>
+    <string name="diagnostics_error">%1$s: code=%2$s, cause=%3$s, recoverable=%4$s</string>
+    <string name="diagnostics_health_report">State: %1$s\nSDK version: %2$s\nEngine version: %3$s\nNative build: %4$s\nSchema: %5$s\nSupported schema: %6$s\nDataset: %7$s\nSupported dataset: %8$s\nData mode: %9$s\nTile source: %10$s\nActive reader: %11$s\nLoaded routing tiles: %12$d\nSQLite rows: %13$d\nRequests: %14$d\nUptime: %15$d s\nRoute mode: %16$s\nDownload policy: %17$s\nData root: %18$s</string>
+    <string name="discovery_regions">Regions</string>
+    <string name="discovery_radius">Radius</string>
+    <string name="discovery_route">Route</string>
+    <string name="discovery_radius_title">Download by radius</string>
+    <string name="discovery_route_title">Download along route</string>
+    <string name="radius_km">Radius km</string>
+    <string name="find_regions_radius">Find regions in radius</string>
+    <string name="find_regions_route">Generate route and find regions</string>
+    <plurals name="discovery_results_restored">
+        <item quantity="one">Restored %1$d matching region.</item>
+        <item quantity="other">Restored %1$d matching regions.</item>
+    </plurals>
+    <string name="select_all">Select all</string>
+    <string name="clear_selection">Clear selection</string>
+    <string name="download_selected">Download selected</string>
+    <string name="batch_download_already_running">Another batch download is already running.</string>
+    <string name="batch_download_progress">Submitting %1$d/%2$d · region %3$s…</string>
+    <plurals name="batch_download_complete">
+        <item quantity="one">Submitted %1$d region download; failures=%2$d. Live progress remains authoritative.</item>
+        <item quantity="other">Submitted %1$d region downloads; failures=%2$d. Live progress remains authoritative.</item>
+    </plurals>
+    <plurals name="region_child_count">
+        <item quantity="one">%1$d region</item>
+        <item quantity="other">%1$d regions</item>
+    </plurals>
+    <string name="group_expanded_indicator" translatable="false">▾</string>
+    <string name="group_collapsed_indicator" translatable="false">›</string>
+    <string name="expand_state">Expand %1$s</string>
+    <string name="collapse_state">Collapse %1$s</string>
+</resources>

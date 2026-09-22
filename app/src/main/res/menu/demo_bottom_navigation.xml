@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/tab_regions"
+        android:icon="@drawable/ic_regions"
+        android:title="@string/tab_regions" />
+    <item
+        android:id="@+id/tab_route"
+        android:icon="@drawable/ic_route"
+        android:title="@string/tab_route" />
+    <item
+        android:id="@+id/tab_diagnostics"
+        android:icon="@drawable/ic_diagnostics"
+        android:title="@string/tab_diagnostics" />
+</menu>

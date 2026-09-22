@@ -1,0 +1,12 @@
+/.gradle/
+/.idea/
+/build/
+**/build/
+/app/release/
+/local.properties
+*.iml
+*.jks
+*.keystore
+.env
+service-account*.json
+gcp-credentials*.json

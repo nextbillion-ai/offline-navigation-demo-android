@@ -1,0 +1,10 @@
+# Copy to local.properties. Never commit the real key.
+sdk.dir=/absolute/path/to/Android/sdk
+NEXTBILLION_ACCESS_KEY=YOUR_RESTRICTED_CLIENT_API_KEY
+
+# Optional for Debug. Required for assembleRelease/bundleRelease.
+# Paths are resolved from the repository root. Never commit the keystore or real passwords.
+RELEASE_STORE_FILE=test.jks
+RELEASE_STORE_PASSWORD=YOUR_STORE_PASSWORD
+RELEASE_KEY_ALIAS=YOUR_KEY_ALIAS
+RELEASE_KEY_PASSWORD=YOUR_KEY_PASSWORD
