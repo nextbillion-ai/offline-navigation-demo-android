@@ -22,6 +22,7 @@ import ai.nextbillion.navigation.core.offline.RouteSource
 import ai.nextbillion.navigation.ui.NavLauncherConfig
 import ai.nextbillion.navigation.ui.NBNavigation
 import ai.nextbillion.navigation.ui.NavigationLauncher
+import ai.nextbillion.navigation.ui.SpeedometerStyle
 import ai.nextbillion.offlinedemo.databinding.ActivityMainBinding
 import java.util.Locale
 import timber.log.Timber
@@ -291,6 +292,7 @@ class MainActivity : AppCompatActivity() {
                 .isRoutePreviewModel(false)
                 .shouldSimulateRoute(binding?.simulateNavigationSwitch?.isChecked == true)
                 .showSpeedometer(true)
+                .speedometerStyle(SpeedometerStyle.SQUARE)
                 .build()
             NavigationLauncher.startNavigation(this, config)
         }.onFailure {
